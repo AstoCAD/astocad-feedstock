@@ -1,5 +1,8 @@
 rm -rf C:/hostedtoolcache/windows/Python
 
+:: AstoCAD Branding
+copy /y branding\AstoCAD.ico src\Main\icon.ico
+
 mkdir build
 cd build
 
@@ -59,5 +62,14 @@ if errorlevel 1 exit 1
 ninja install
 if errorlevel 1 exit 1
 
-ren %LIBRARY_PREFIX%\bin\FreeCAD.exe freecad.exe
-ren %LIBRARY_PREFIX%\bin\FreeCADCmd.exe freecadcmd.exe
+rmdir /s /q "%LIBRARY_PREFIX%\doc"
+ren %LIBRARY_PREFIX%\bin\FreeCAD.exe AstoCAD.exe
+ren %LIBRARY_PREFIX%\bin\FreeCADCmd.exe AstoCADcmd.exe
+mklink %LIBRARY_PREFIX%\bin\freecad.exe AstoCAD.exe
+mklink %LIBRARY_PREFIX%\bin\freecadcmd.exe AstoCADcmd.exe
+
+:: AstoCAD branding
+move ..\branding\branding.xml %LIBRARY_PREFIX%\bin\
+ren ..\branding AstoCAD
+mkdir %LIBRARY_PREFIX%\share\Gui
+move ..\AstoCAD %LIBRARY_PREFIX%\share\Gui\

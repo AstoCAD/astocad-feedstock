@@ -3,7 +3,7 @@ c_stdlib:
 channel_sources:
 - freecad/label/dev,conda-forge
 channel_targets:
-- freecad dev
+- AstoCAD dev
 cxx_compiler:
 - vs2019
 freetype:
