@@ -64,5 +64,17 @@ cmake -G "Ninja" \
       ..
 
 ninja install
-mv ${PREFIX}/bin/FreeCAD ${PREFIX}/bin/freecad
-mv ${PREFIX}/bin/FreeCADCmd ${PREFIX}/bin/freecadcmd
+rm -r ${PREFIX}/share/doc/FreeCAD     # smaller size of package!
+mv ${PREFIX}/bin/FreeCAD ${PREFIX}/bin/AstoCAD
+mv ${PREFIX}/bin/FreeCADCmd ${PREFIX}/bin/AstoCADcmd
+ln -s AstoCAD ${PREFIX}/bin/freecad
+ln -s AstoCADcmd ${PREFIX}/bin/freecadcmd
+
+# AstoCAD branding
+if [[ ${HOST} =~ .*linux.* ]]; then
+  mv ../branding/com.astocad.desktop "${PREFIX}/share/applications/"
+  cp ../branding/AstoCAD.svg "${PREFIX}/share/icons/hicolor/scalable/apps/"
+  rm ${PREFIX}/share/applications/org.freecad.FreeCAD.desktop
+fi
+mv ../branding/branding.xml "${PREFIX}/bin/"
+mv ../branding "${PREFIX}/share/Gui/AstoCAD/"
