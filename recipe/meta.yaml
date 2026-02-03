@@ -1,6 +1,6 @@
 {% set name = "astocad" %}
 {% set version = "1.1" %}
-{% set build_number = 128 %}
+{% set build_number = 129 %}
 {% set build_number = build_number + 500 %}  # [FEATURE_DEBUG]
 
 package:
